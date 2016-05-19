@@ -1083,7 +1083,7 @@ def getcfg(args, inibasenames):
         for base in arg.parts(reverse=True):
             for inibasename in inibasenames:
                 p = base.join(inibasename)
-                if exists(p):
+                if exists(p) and not p.isdir():
                     iniconfig = py.iniconfig.IniConfig(p)
                     if 'pytest' in iniconfig.sections:
                         return base, p, iniconfig['pytest']
